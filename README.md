@@ -2,30 +2,10 @@
 
 
 
-## To Do
-- [X] End-to-end functioning app
-- [X] 3 views of 
-  - [X] List, 
-  - [X] Item, 
-  - [X] Create
-- [X] LLM Triager
-  - [X] Task/Async framework
-  - [X] Frontend polling mechanism to retrieve the task result
-  - [X] any llm interaction
-- [X] A little bit of styling so it doesn't look hideous
-- [X] UX States
-  - [X] Loading
-  - [X] Empty
-  - [X] Error - if openai response is in error or if the response from the Backend
-
-- [X] containerize
-- [X] tests for both FE, BE
-- [X] Typescript
-
-- [X] Walkthrough at the end
-
 ## How to Run
-Requires Docker with Compose.
+Setup:
+- Meant to be run with `docker compose`.
+- Your environment should have the value `OPENAI_API_KEY` set.
 
 ```sh
 make up     # build and start in the background
@@ -40,20 +20,27 @@ make test   # backend (pytest) + frontend (jest); also test-be / test-fe
 - Vite proxies `/api/*` to the backend
 
 
-## What you built - Architecture
+## What's here 
+
+### Architecture
 ```mermaid
 flowchart LR
     FE[React FE] --> Vite
     Vite --> API
 
-    subgraph API[FastAPI]
-        BG[Background Tasks]
+    subgraph API[Backend - FastAPI]
+        BG[Background Tasks run through native FastAPI tooling]
     end
 
     API --> DB[(SQLite)]
     BG --> OpenAI[OpenAI API]
 ```
 
+### Key Models
+The following is a pydantic representation of the key models
+in this application, namely: `IntakeSubmission` and `IntakeSubmissionTriageRecord`. 
+
+The following code is illustrative and intentionally incomplete:
 ```python
 from typing import Optional, List
 from uuid import UUID
@@ -95,3 +82,27 @@ class IntakeSubmissionTriageRecord(BaseUUIDCreateModel):
 
 
 ## Verification
+- Verification performed with unit tests and manual QA.
+- No integration tests were introduced.
+
+## To Do
+- [X] End-to-end functioning app
+- [X] 3 views of: 
+  - [X] List, 
+  - [X] Item, 
+  - [X] Create
+- [X] LLM Triager
+  - [X] Task/Async framework
+  - [X] Frontend polling mechanism to retrieve the task result
+  - [X] any llm interaction
+- [X] A little bit of styling so it doesn't look hideous
+- [X] UX States
+  - [X] Loading
+  - [X] Empty
+  - [X] Error - if openai response is in error or if the response from the Backend
+
+- [X] containerize
+- [X] tests for both FE, BE
+- [X] Typescript
+
+- [X] Walkthrough at the end
