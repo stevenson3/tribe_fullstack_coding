@@ -8,10 +8,11 @@ Setup:
 - Your environment should have the value `OPENAI_API_KEY` set.
 
 ```sh
-make up     # build and start in the background
-make logs   # tail logs
+make up     # build and start -- this will tail the logs of the app
 make down   # stop
 make clean  # stop and delete the SQLite volume
+
+# separately, optional
 make test   # backend (pytest) + frontend (jest); also test-be / test-fe
 ```
 

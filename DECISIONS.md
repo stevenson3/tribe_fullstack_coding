@@ -17,3 +17,4 @@
   in local development (this assumes Kubernetes deployment in a remote env).
 - Introduce proper migration management (i.e. Alembic)
 - Swap out SQLite for Postgres (easy and simple...would've done this from the start but for the prompts request that I not do this).
+- Swap out `pip` for `uv` on the python side.
